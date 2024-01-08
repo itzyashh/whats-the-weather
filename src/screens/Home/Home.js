@@ -8,6 +8,7 @@ import WeatherBasic from '../../components/WeatherBasic/WeatherBasic'
 
 const Home = () => {
     const [coords, setCoords] = useState(null)
+    const [weather, setWeather] = useState(null)
 
     useEffect(() => {
         requestLocationPermission()
@@ -39,17 +40,16 @@ const Home = () => {
     const getWeatherByCoords = async () => {
         try {
             console.log('wee')
-            // const response = await openMeteo.get('/forecast',{
-            //    params: {
-            //        latitude: coords.latitude,
-            //        longitude: coords.longitude,
-            //        longitude: coords.longitude,
-            //        daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
-            //        timezone: 'auto',
-            //        current_weather: true
-            //    }
-            // })
-            console.log('weeSuccess',response.data)
+            const response = await openMeteo.get('/forecast',{
+               params: {
+                   latitude: coords.latitude,
+                   longitude: coords.longitude,
+                   daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
+                   timezone: 'auto',
+                   current_weather: true
+               }
+            })
+            setWeather(response.data)
             }
         catch (error) {
             console.log('wee',error)
@@ -61,7 +61,7 @@ const Home = () => {
     <>
 
     <View style={s.basic_weather}>
-       <WeatherBasic/>
+    {  !!weather && <WeatherBasic weather={weather}/>}
     </View>
     <View style={s.searchbar_container}>
        <Txt
