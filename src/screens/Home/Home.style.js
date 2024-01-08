@@ -10,4 +10,6 @@ export const s = StyleSheet.create({
     weather_advanced: {
         flex: 1
     },
+   
+    
 })

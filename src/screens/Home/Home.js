@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { s } from './Home.style'
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo-location'
 import openMeteo from '../../api/openMeteo'
+import Txt from '../../components/Txt/Txt'
 
 const Home = () => {
     const [coords, setCoords] = useState(null)
@@ -59,13 +60,18 @@ const Home = () => {
     <>
 
     <View style={s.basic_weather}>
-      <Text>Home</Text>
+        <Txt
+            onPress={ () => console.log('wee')}
+        
+        >Home</Txt>
     </View>
     <View style={s.searchbar_container}>
-      <Text>Home</Text>
+       <Txt
+       selectable={true}
+       >Home</Txt>
     </View>
     <View style={s.weather_advanced}>
-      <Text>Home</Text>
+         <Txt>Home</Txt>
     </View>
     </>
   )
