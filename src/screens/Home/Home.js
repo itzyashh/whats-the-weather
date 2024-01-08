@@ -4,6 +4,7 @@ import { s } from './Home.style'
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo-location'
 import openMeteo from '../../api/openMeteo'
 import Txt from '../../components/Txt/Txt'
+import WeatherBasic from '../../components/WeatherBasic/WeatherBasic'
 
 const Home = () => {
     const [coords, setCoords] = useState(null)
@@ -38,16 +39,16 @@ const Home = () => {
     const getWeatherByCoords = async () => {
         try {
             console.log('wee')
-            const response = await openMeteo.get('/forecast',{
-               params: {
-                   latitude: coords.latitude,
-                   longitude: coords.longitude,
-                   longitude: coords.longitude,
-                   daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
-                   timezone: 'auto',
-                   current_weather: true
-               }
-            })
+            // const response = await openMeteo.get('/forecast',{
+            //    params: {
+            //        latitude: coords.latitude,
+            //        longitude: coords.longitude,
+            //        longitude: coords.longitude,
+            //        daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
+            //        timezone: 'auto',
+            //        current_weather: true
+            //    }
+            // })
             console.log('weeSuccess',response.data)
             }
         catch (error) {
@@ -60,10 +61,7 @@ const Home = () => {
     <>
 
     <View style={s.basic_weather}>
-        <Txt
-            onPress={ () => console.log('wee')}
-        
-        >Home</Txt>
+       <WeatherBasic/>
     </View>
     <View style={s.searchbar_container}>
        <Txt
