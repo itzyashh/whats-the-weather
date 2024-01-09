@@ -1,8 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Text } from 'react-native'
 import React from 'react'
 import { s } from './Txt.style'
 
 const Txt = ({children,style,...props}) => {
+
+
   return <Text
     style={[s.txt,style]}
     {...props}
@@ -11,5 +13,3 @@ const Txt = ({children,style,...props}) => {
 }
 
 export default Txt
-
-const styles = StyleSheet.create({})

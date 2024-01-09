@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { textScale } from "../../../assets/styles/scaling";
 
 export const s = StyleSheet.create({
     clock:{
@@ -18,7 +19,7 @@ export const s = StyleSheet.create({
         alignItems:'baseline'
     },
     temperature:{
-        fontSize: 150
+        fontSize: textScale(150)
     },
     icon:{
         fontSize: 80,

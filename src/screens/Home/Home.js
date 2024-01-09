@@ -39,14 +39,15 @@ const Home = () => {
 
     const getWeatherByCoords = async () => {
         try {
-            console.log('wee')
+            console.log('api called')
             const response = await openMeteo.get('/forecast',{
                params: {
                    latitude: coords.latitude,
                    longitude: coords.longitude,
                    daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
                    timezone: 'auto',
-                   current_weather: true
+                   current_weather: true,
+                   forecast_days: 1,
                }
             })
             setWeather(response.data)
