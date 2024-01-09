@@ -9,7 +9,9 @@ export const s = StyleSheet.create({
         flex:2
     },
     weather_advanced: {
-        flex: 1
+        flex: 1,
+        paddingBottom: 10,
+        paddingHorizontal: 20,
     },
    
     

@@ -5,6 +5,7 @@ import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo
 import openMeteo from '../../api/openMeteo'
 import Txt from '../../components/Txt/Txt'
 import WeatherBasic from '../../components/WeatherBasic/WeatherBasic'
+import WeatherAdvance from '../../components/WeatherAdvance/WeatherAdvance'
 
 const Home = () => {
     const [coords, setCoords] = useState(null)
@@ -12,7 +13,7 @@ const Home = () => {
 
     useEffect(() => {
         requestLocationPermission()
-        
+
     }, [])
 
     useEffect(() => {
@@ -20,7 +21,7 @@ const Home = () => {
             getWeatherByCoords()
         }
     }
-    , [coords])
+        , [coords])
 
     console.log(coords)
     const requestLocationPermission = async () => {
@@ -34,46 +35,46 @@ const Home = () => {
             latitude: 28.7041,
             longitude: 77.1025
         })
-     
+
     }
 
     const getWeatherByCoords = async () => {
         try {
             console.log('api called')
-            const response = await openMeteo.get('/forecast',{
-               params: {
-                   latitude: coords.latitude,
-                   longitude: coords.longitude,
-                   daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
-                   timezone: 'auto',
-                   current_weather: true,
-                   forecast_days: 1,
-               }
+            const response = await openMeteo.get('/forecast', {
+                params: {
+                    latitude: coords.latitude,
+                    longitude: coords.longitude,
+                    daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
+                    timezone: 'auto',
+                    current_weather: true,
+                    forecast_days: 1,
+                }
             })
             setWeather(response.data)
-            }
+        }
         catch (error) {
-            console.log('wee',error)
+            console.log('wee', error)
         }
     }
-    
 
-  return (
-    <>
 
-    <View style={s.basic_weather}>
-    {  !!weather && <WeatherBasic weather={weather}/>}
-    </View>
-    <View style={s.searchbar_container}>
-       <Txt
-       selectable={true}
-       >Home</Txt>
-    </View>
-    <View style={s.weather_advanced}>
-         <Txt>Home</Txt>
-    </View>
-    </>
-  )
+    return (
+        <>
+
+            <View style={s.basic_weather}>
+                {!!weather && <WeatherBasic weather={weather} />}
+            </View>
+            <View style={s.searchbar_container}>
+                <Txt
+                    selectable={true}
+                >Home</Txt>
+            </View>
+            <View style={s.weather_advanced}>
+                {!!weather && <WeatherAdvance weather={weather} />}
+            </View>
+        </>
+    )
 }
 
 export default Home

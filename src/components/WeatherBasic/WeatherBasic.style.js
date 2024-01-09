@@ -11,7 +11,8 @@ export const s = StyleSheet.create({
         transform: [{ rotate: '-90deg'}]
     },
     interpretationText:{
-        fontSize: 20
+        fontSize: 20,
+        display:'none',
     },
     temperatureContainer:{
         flexDirection:'row',
