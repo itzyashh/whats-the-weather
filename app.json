@@ -15,8 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.itzyashh.whatstheweather"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {

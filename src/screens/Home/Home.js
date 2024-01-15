@@ -1,4 +1,4 @@
-import { RefreshControl, ScrollView, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { s } from './Home.style'
 import { getCurrentPositionAsync, requestForegroundPermissionsAsync } from 'expo-location'
@@ -10,9 +10,6 @@ import WeatherAdvance from '../../components/WeatherAdvance/WeatherAdvance'
 const Home = () => {
     const [coords, setCoords] = useState(null)
     const [weather, setWeather] = useState(null)
-
-
-
 
     useEffect(() => {
         requestLocationPermission()
@@ -63,13 +60,8 @@ const Home = () => {
 
 
     return (
-        <ScrollView
-            contentContainerStyle={s.scrollview}
-         style={s.container}>
-         <RefreshControl
-            refreshing={false}
-            onRefresh={getWeatherByCoords}
-            />
+        <>
+
             <View style={s.basic_weather}>
                 {!!weather && <WeatherBasic weather={weather} />}
             </View>
@@ -81,7 +73,7 @@ const Home = () => {
             <View style={s.weather_advanced}>
                 {!!weather && <WeatherAdvance weather={weather} />}
             </View>
-            </ScrollView>
+        </>
     )
 }
 
