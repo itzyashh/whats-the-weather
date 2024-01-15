@@ -11,5 +11,6 @@ export const s = StyleSheet.create({
     img: {
         opacity: 0.8
     },
+    
    
 })
