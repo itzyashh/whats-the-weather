@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const baseUrl = 'https://nominatim.openstreetmap.org'
+const baseUrl = 'https://maps.googleapis.com/maps/api'
 
 export default axios.create({
     baseURL: baseUrl,
