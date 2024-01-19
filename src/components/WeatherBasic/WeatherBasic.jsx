@@ -50,7 +50,7 @@ const WeatherBasic = ({weather}) => {
     </View>
     <TouchableOpacity
     opacity={.9}
-    onPress={() => navigation.navigate('Forecast')}
+    onPress={() => navigation.navigate('Forecast',{weather, city})}
      style={s.temperatureContainer}>
     <Txt
     style={s.temperature}

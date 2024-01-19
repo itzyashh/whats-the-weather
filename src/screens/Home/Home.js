@@ -6,6 +6,8 @@ import openMeteo from '../../api/openMeteo'
 import Txt from '../../components/Txt/Txt'
 import WeatherBasic from '../../components/WeatherBasic/WeatherBasic'
 import WeatherAdvance from '../../components/WeatherAdvance/WeatherAdvance'
+import SearchBar from '../../components/SearchBar/SearchBar'
+import openMeteoGeocoding from '../../api/openMeteoGeocoding'
 
 const Home = () => {
     const [coords, setCoords] = useState(null)
@@ -51,13 +53,33 @@ const Home = () => {
                     daily: 'weathercode,temperature_2m_max,sunrise,sunset,windspeed_10m_max',
                     timezone: 'auto',
                     current_weather: true,
-                    forecast_days: 1,
+                    forecast_days: 7,
                 }
             })
             setWeather(response.data)
         }
         catch (error) {
             console.log('wee', error)
+        }
+    }
+
+    const getCityByName = async (city) => {
+        console.log(city)
+        try {
+            const response = await openMeteoGeocoding.get('/search', {
+                params: {
+                    name: city,
+                    count: 1,
+                    language: 'en'
+                }
+            })
+            setCoords({
+                latitude: response.data.results[0].latitude,
+                longitude: response.data.results[0].longitude
+            })
+        }
+        catch (error) {
+            console.log(error)
         }
     }
 
@@ -74,9 +96,7 @@ const Home = () => {
                 {!!weather && <WeatherBasic weather={weather} />}
             </View>
             <View style={s.searchbar_container}>
-                <Txt
-                    selectable={true}
-                >Home</Txt>
+               <SearchBar onSubmit={getCityByName} />
             </View>
             <View style={s.weather_advanced}>
                 {!!weather && <WeatherAdvance weather={weather} />}

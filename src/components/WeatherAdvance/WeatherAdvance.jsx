@@ -5,9 +5,9 @@ import { StyledContainer, StyledLabel, StyledValue, s } from './WeatherAdvance.s
 import { convertToHHMM } from '../../utils/date-time'
 
 const WeatherAdvance = ({weather}) => {
-  const sunrise = weather?.daily?.sunrise
+  const sunrise = weather?.daily?.sunrise[0]
   const sunriseFormatted = convertToHHMM(sunrise)
-  const sunset = weather?.daily?.sunset
+  const sunset = weather?.daily?.sunset[0]
   const sunsetFormatted = convertToHHMM(sunset)
   return (
     <View style={s.container}>
