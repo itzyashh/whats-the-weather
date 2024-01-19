@@ -38,3 +38,4 @@ yarn-error.*
 .env*.local
 .env.local
 .env.development.local
+.env
